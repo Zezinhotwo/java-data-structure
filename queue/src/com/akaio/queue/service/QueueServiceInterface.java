@@ -1,11 +1,17 @@
 package com.akaio.queue.service;
 
-public interface QueueServiceInterface {
-    void enqueue(int value);
+public interface QueueServiceInterface<T> {
+    void enqueue(T value);
 
-    int dequeue();
+    void dequeue();
 
-    int peek();
+    T peek();
+
+    void pop();
+
+    boolean contains(T value);
+
+    int find(T value);
 
     boolean isEmpty();
 }
