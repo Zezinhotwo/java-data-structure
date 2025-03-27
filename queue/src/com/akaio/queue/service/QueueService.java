@@ -32,6 +32,14 @@ public class QueueService<T> implements QueueServiceInterface<T> {
 
     @Override
     public void dequeue() {
+        if (this.head == null) {
+            System.out.println("A fila esta vazia");
+            return;
+        }
+        this.head = this.head.getNext();
+        if (this.head == null) {
+            this.tail = null;
+        }
     }
 
     @Override
@@ -41,17 +49,46 @@ public class QueueService<T> implements QueueServiceInterface<T> {
 
     @Override
     public void pop() {
+        if (this.head == null) {
+            this.head = null;
+            this.tail = null;
+            System.out.println("lista vazia");
+        }
 
+        QueueNode<T> current = this.head;
+        while (current.getNext() != this.tail) {
+            current = current.getNext();
+        }
+        this.tail = null;
+        this.tail = current;
     }
 
     @Override
     public boolean contains(T value) {
+        QueueNode<T> current = this.head;
+
+        while (current != null) {
+            if (current.getNode().equals(value)) {
+                return true;
+            }
+            current = current.getNext();
+        }
         return false;
     }
 
     @Override
     public int find(T value) {
-        return 0;
+        int count = 0;
+        QueueNode<T> current = this.head;
+
+        while (current != null) {
+            if (current.getNode().equals(value)) {
+                return count;
+            }
+            current = current.getNext();
+            count++;
+        }
+        return -1;
     }
 
     @Override

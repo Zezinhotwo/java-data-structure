@@ -24,6 +24,9 @@ public class Main {
         System.out.println(content.toString());
         System.out.println(content.isEmpty());
         System.out.println(content.peek());
+        content.dequeue();
+        System.out.println(content.toString());
+        System.out.println(content.contains(14));
     }
 
 }
